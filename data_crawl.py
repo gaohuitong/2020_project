@@ -11,20 +11,21 @@ def download_all_htmls(pages_indexs):
     for idx in pages_indexs:
         url=f"https://www.debian.org/security/{idx}"
         print("craw html:",url) 
+        headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)"}
         try:
-            r = requests.get(url,timeout=10)
+            r = requests.get(url,headers=headers,timeout=10)
             if r.status_code != 200:
                 raise Exception("浏览器无法访问")
         except:
             print('服务器无响应')
             try:
-                r = requests.get(url,timeout=10)
+                r = requests.get(url,headers=headers,timeout=10)
                 if r.status_code != 200:
                     raise Exception("浏览器无法访问")
             except:
                 print('服务器无响应2')
                 try:
-                    r = requests.get(url,timeout=10)
+                    r = requests.get(url,headers=headers,timeout=10)
                     if r.status_code != 200:
                         raise Exception("浏览器无法访问")
                 except:
